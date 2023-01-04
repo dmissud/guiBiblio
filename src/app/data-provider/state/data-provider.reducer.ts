@@ -4,28 +4,25 @@ import * as AppState from '../../state/app.state';
 import * as DataProviderActions from './data-provider.actions'
 import {DataDescription} from "../data-description";
 
-// State for this feature (Gpio)
+// State for this feature (data-provider)
 export interface DataProviderState {
   showFullInformation: boolean;
   dataProvides: DataDescription[];
 }
 
 const initialState: DataProviderState = {
-  showFullInformation: true,
+  showFullInformation: false,
   dataProvides: []
 }
 
-// Extends the app state to include the product feature.
-// This is required because products are lazy loaded.
-// So the reference to ProductState cannot be added to app.state.ts directly.
 export interface State extends AppState.State {
-  products: DataProviderState;
+  dataProvides: DataProviderState;
 }
 
 // Selector functions
 const getDataProvideFeatureState = createFeatureSelector<DataProviderState>('data-provider');
 
-export const getProducts = createSelector(
+export const getDataProvides = createSelector(
   getDataProvideFeatureState,
   state => state.dataProvides
 );

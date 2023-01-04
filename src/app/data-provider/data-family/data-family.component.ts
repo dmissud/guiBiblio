@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DataProviderState, getProducts, getShowFullInformation} from "../state/data-provider.reducer";
+import {DataProviderState, getDataProvides, getShowFullInformation} from "../state/data-provider.reducer";
 import {DataProviderService} from "../data-provider.service";
 import {Store} from "@ngrx/store";
 import {DataDescription} from "../data-description";
@@ -13,30 +13,32 @@ export class DataFamilyComponent implements OnInit {
   dataProvides: DataDescription[] = [{dataName: "A", sizeOf: 1}];
   lowDescription: string[] = ['dataProvide-name'];
   fullDescription: string[] = ['dataProvide-name', 'dataProvide-sizeOf'];
+  description: string[] | undefined;
+
   errorMessage: string | undefined;
-  displayFullInformation: boolean = false;
   clickedRows: DataDescription | undefined;
 
   constructor(private store: Store<DataProviderState>, private dataProviderService: DataProviderService) {
   }
 
   ngOnInit(): void {
-    this.dataProviderService.getDataProvides().subscribe({
-      next: (dataProvides: DataDescription[]) => this.dataProvides = dataProvides,
-      error: err => this.errorMessage = err
-    });
-
-    this.dataProviderService.loadDataProvides();
 
     // TODO: Unsubscribe
-    this.store.select(getProducts).subscribe(
+    this.store.select(getDataProvides).subscribe(
       dataProvides => this.dataProvides = dataProvides
     );
 
     // TODO: Unsubscribe
     this.store.select(getShowFullInformation).subscribe(
-      showFullInformation => this.displayFullInformation = showFullInformation
+      showFullInformation => {
+        if (showFullInformation) {
+          this.description = this.fullDescription;
+        } else {
+          this.description = this.lowDescription;
+        }
+      }
     );
 
+    this.dataProviderService.loadDataProvides();
   }
 }
