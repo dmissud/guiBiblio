@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataProviderService} from "../../data-provider/data-provider.service";
 
 @Component({
   selector: 'app-top-menu',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-menu.component.scss'],
 })
 export class TopMenuComponent implements OnInit {
+
   get name(): string {
     return this._name;
   }
@@ -16,7 +18,12 @@ export class TopMenuComponent implements OnInit {
   private _name: string = require('../../../../package.json').name;
   private _version: string = require('../../../../package.json').version;
 
-  constructor() {}
+  constructor(private dataProviderService: DataProviderService) {
+  }
 
   ngOnInit(): void {}
+
+  doRefresh() {
+    this.dataProviderService.loadDataProvides();
+  }
 }

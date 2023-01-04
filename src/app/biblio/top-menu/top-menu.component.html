@@ -3,12 +3,10 @@
     <button
       mat-button
       [matMenuTriggerFor]="aboveMenu"
-      aria-label="General menu for GestBiblio"
-    >
-      My Biblio
+      aria-label="General menu for GestBiblio">My Biblio
     </button>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
-      <button mat-menu-item>Refresh</button>
+      <button mat-menu-item (click)="doRefresh()">Refresh</button>
     </mat-menu>
   </div>
   <div class="flex-spacer"></div>

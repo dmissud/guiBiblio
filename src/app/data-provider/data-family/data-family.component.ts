@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataProviderState, getProducts, getShowFullInformation} from "../state/data-provider.reducer";
 import {DataProviderService} from "../data-provider.service";
 import {Store} from "@ngrx/store";
@@ -9,7 +9,7 @@ import {DataDescription} from "../data-description";
   templateUrl: './data-family.component.html',
   styleUrls: ['./data-family.component.scss']
 })
-export class DataFamilyComponent {
+export class DataFamilyComponent implements OnInit {
   dataProvides: DataDescription[] = [{dataName: "A", sizeOf: 1}];
   lowDescription: string[] = ['dataProvide-name'];
   fullDescription: string[] = ['dataProvide-name', 'dataProvide-sizeOf'];
@@ -26,6 +26,8 @@ export class DataFamilyComponent {
       error: err => this.errorMessage = err
     });
 
+    this.dataProviderService.loadDataProvides();
+
     // TODO: Unsubscribe
     this.store.select(getProducts).subscribe(
       dataProvides => this.dataProvides = dataProvides
@@ -35,5 +37,6 @@ export class DataFamilyComponent {
     this.store.select(getShowFullInformation).subscribe(
       showFullInformation => this.displayFullInformation = showFullInformation
     );
+
   }
 }
