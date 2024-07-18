@@ -7,25 +7,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '../share/material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {StoreModule} from "@ngrx/store";
 import {DataFamilyComponent} from './data-family/data-family.component';
 import {dataProviderReducer} from "./state/data-provider.reducer";
 
-@NgModule({
-  declarations: [DataProviderShellComponent, DataFamilyComponent],
-  exports: [DataProviderShellComponent],
-  imports: [
-    CommonModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    MatNativeDateModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    StoreModule.forFeature('data-provider', dataProviderReducer)
-  ]
-})
+@NgModule({ declarations: [DataProviderShellComponent, DataFamilyComponent],
+    exports: [DataProviderShellComponent], imports: [CommonModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        FormsModule,
+        MatNativeDateModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        StoreModule.forFeature('data-provider', dataProviderReducer)], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class DataProviderModule {
 }

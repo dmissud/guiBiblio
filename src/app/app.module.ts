@@ -18,7 +18,7 @@ import {DataProviderModule} from "./data-provider/data-provider.module";
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ name: 'guiBiblio',maxAge: 25, logOnly: !isDevMode() })
+    StoreDevtoolsModule.instrument({ name: 'guiBiblio',maxAge: 25, logOnly: !isDevMode() , connectInZone: true})
   ],
   providers: [],
   bootstrap: [AppComponent]
