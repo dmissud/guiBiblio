@@ -1,0 +1,31 @@
+<mat-toolbar class="custom-toolbar" color="primary">
+  <button mat-icon-button aria-label="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>{{title}}</span>
+  <span class="spacer"></span>
+  <button mat-icon-button aria-label="Réduire">
+    <mat-icon>remove</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="widget?.x !== 0" aria-label="Précédent">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Plein écran">
+    <mat-icon>fullscreen</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="widget?.x !== 2" aria-label="Suivant">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Fermer">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+<ng-container *ngIf="widget?.['type'] === 'widgetA'">
+  <app-widget-a [resizeEvent]="resizeEvent" [widget]="widget"></app-widget-a>
+</ng-container>
+<ng-container *ngIf="widget?.['type'] === 'widgetB'">
+  <app-widget-b [widget]="widget" [resizeEvent]="resizeEvent"></app-widget-b>
+</ng-container>
+<ng-container *ngIf="widget?.['type']  === 'widgetC'">
+  <app-widget-c [widget]="widget" [resizeEvent]="resizeEvent"></app-widget-c>
+</ng-container>

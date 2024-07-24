@@ -1,0 +1,8 @@
+app-core-topbar {
+  height: 10vh;  /* Ajustez cette valeur en fonction de vos besoins */
+}
+
+grille {
+  height: 90vh;  /* Ajustez cette valeur en fonction de vos besoins */
+  overflow: auto;
+}

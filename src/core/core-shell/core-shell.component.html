@@ -1,1 +1,10 @@
-<p>core-shell works!</p>
+<app-core-topbar></app-core-topbar>
+<gridster [options]="options">
+  <gridster-item *ngFor="let item of dashboard" [item]="item">
+    <app-core-parent
+      [widget]="item"
+      [resizeEvent]="resizeEvent"
+    ></app-core-parent>
+  </gridster-item>
+</gridster>
+
