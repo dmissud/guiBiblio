@@ -1,6 +1,8 @@
-import { Routes } from '@angular/router';
-import {CoreShellComponent} from "../core/core-shell/core-shell.component";
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
-  { path: 'home', component: CoreShellComponent }
+  {
+    path: '',
+    loadChildren: () => import('../core/core.module').then(m => m.CoreModule)
+  }
 ];
