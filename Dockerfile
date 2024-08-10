@@ -2,7 +2,7 @@
 FROM node:18.18.0-buster-slim AS build
 WORKDIR /usr/src/app
 COPY package.json ./
-RUN npm install -g npm@10.2.1
+RUN npm install -g npm@10.2.5
 RUN yarn
 COPY . .
 RUN npm update
